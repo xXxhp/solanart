@@ -64,6 +64,9 @@ def monitor(collection, price):
             response = requests.get("https://jmccmlyu33.medianetwork.cloud/nft_for_sale?collection=" + collection)
             for NFTS in response.json():
                 if NFTS['price'] <= price:
+                    # Temporaire
+                    if "#1634" in NFTS['name']:
+                        continue
                     if NFTS not in OLD_NFTS:
                         OLD_NFTS.append(NFTS)
                         for webhook in webhooks:
