@@ -60,7 +60,7 @@ def sendCode(name, price, img, nft_url, webhook_name, webhook_url, footer_name, 
 def monitor(collection, price, webhooks):
     while True:
         response = requests.get(
-            "https://jmccmlyu33.medianetwork.cloud/nft_for_sale?collection=" + collection)
+            "https://tlsktfahct.medianetwork.cloud/nft_for_sale?collection=" + collection)
         try:
             for NFTS in response.json():
                 if NFTS['price'] <= price:
