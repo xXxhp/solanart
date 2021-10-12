@@ -56,7 +56,7 @@ def sendCode(name, price, img, nft_url, webhook_name, webhook_url, footer_name, 
     else:
         print("Webhook sent to : " + webhook_name)
 
-
+#You wil need to change this link often as medianetwork likes to switch it, although i may work on making it dynamic in the future so it autoupdates
 def monitor(collection, price, webhooks):
     while True:
         response = requests.get(
