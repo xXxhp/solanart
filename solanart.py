@@ -14,7 +14,7 @@ avatar_url = config['avatar_url']
 
 def delete_nft(NFT):
     global OLD_NFTS
-    print("Deleting : " + NFT['name'] + " in 10 minutes")
+    printWithDate("Deleting : " + NFT['name'] + " in 10 minutes")
     time.sleep(600)
     OLD_NFTS.remove(NFT)
 
