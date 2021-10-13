@@ -22,6 +22,8 @@ def delete_nft(NFT):
 def getDate():
     return datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
 
+def printWithDate(string):
+    print("[" + getDate() + "] " + string)
 
 def sendCode(name, price, img, nft_url, webhook_name, webhook_url, footer_name, footer_image_url, collection):
     data = {
@@ -52,9 +54,9 @@ def sendCode(name, price, img, nft_url, webhook_name, webhook_url, footer_name, 
     try:
         result.raise_for_status()
     except requests.exceptions.HTTPError as err:
-        print(err)
+        printWithDate(err)
     else:
-        print("Webhook sent to : " + webhook_name)
+        printWithDate("Webhook sent to : " + webhook_name)
 
 #You wil need to change this link often as medianetwork likes to switch it, although i may work on making it dynamic in the future so it autoupdates
 def monitor(collection, price, webhooks):
@@ -73,12 +75,13 @@ def monitor(collection, price, webhooks):
                             target=delete_nft, args=(NFTS,))
                         delete_nft_thread.start()
         except json.decoder.JSONDecodeError:
-            print("Can't reach Solanart.")
+            printWithDate("Can't reach Solanart.")
 
 
 def main():
+    print("")
     for collection in collections:
-        print("Monitoring : " + collection['collection'] +
+        printWithDate("Monitoring : " + collection['collection'] +
               " <= " + str(collection['price']) + " sol")
         monitor_thread = threading.Thread(target=monitor, args=(
             collection['collection'], collection['price'], collection['webhooks'],))
